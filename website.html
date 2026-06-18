@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lilly George — Mechanical Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --forest:     #224239;
+      --sage:       #6C7A69;
+      --rose:       #D99A9A;
+      --page-bg:    #FFFDF9;
+      --surface:    #F7F0E6;
+      --text-dark:  #111111;
+      --text-mid:   #263B36;
+      --text-light: #314D46;
+      --rule:       #F0D3D1;
+
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans:  'Inter', system-ui, sans-serif;
+
+      --max-w: 900px;
+      --pad-x: clamp(1.25rem, 5vw, 3rem);
+    }
+
+    /* ── RESET ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--page-bg);
+      color: var(--text-dark);
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: var(--sage); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    a:focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; }
+
+    /* ── HERO ───────────────────────────────────────────────── */
+    .hero {
+      background-color: var(--forest);
+      /* Blueprint grid: engineering drawing aesthetic */
+      background-image:
+        linear-gradient(rgba(219, 141, 141, 0.25) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(219, 141, 141, 0.25) 1px, transparent 1px);
+      background-size: 40px 40px;
+      padding: clamp(4rem, 12vw, 8rem) var(--pad-x) clamp(3rem, 8vw, 5rem);
+      position: relative;
+    }
+    .hero::after {
+      /* rose accent line at bottom */
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--rose), transparent 80%);
+    }
+    .hero-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .hero-eyebrow {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 1rem;
+    }
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 7vw, 5rem);
+      color: #FAFAF8;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+    }
+    .hero-tagline {
+      font-size: clamp(1rem, 2.2vw, 1.2rem);
+      font-weight: 300;
+      color: rgba(250,250,248,0.7);
+      max-width: 55ch;
+      margin-bottom: 2.25rem;
+    }
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.6rem 1.4rem;
+      border-radius: 3px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.85; text-decoration: none; }
+    .btn-primary {
+      background: var(--rose);
+      color: #fff;
+    }
+    .btn-ghost {
+      border: 1px solid rgba(250,250,248,0.35);
+      color: rgba(250,250,248,0.85);
+    }
+
+    /* ── NAV ────────────────────────────────────────────────── */
+    nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--rule);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      display: flex;
+      gap: 2rem;
+      overflow-x: auto;
+    }
+    .nav-inner a {
+      display: block;
+      padding: 0.9rem 0;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-mid);
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .nav-inner a:hover {
+      color: var(--sage);
+      border-bottom-color: var(--sage);
+      text-decoration: none;
+    }
+
+    /* ── SECTIONS ───────────────────────────────────────────── */
+    section {
+      padding: clamp(3rem, 8vw, 5rem) var(--pad-x);
+    }
+    .section-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    section:nth-child(even) {
+      background: var(--surface);
+    }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      color: var(--forest);
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    /* ── ABOUT ──────────────────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    .about-text p {
+      color: var(--text-mid);
+      margin-bottom: 1rem;
+      font-size: 0.975rem;
+    }
+    .about-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .meta-item {
+      background: var(--page-bg);
+      border-left: 3px solid var(--sage);
+      padding: 0.85rem 1rem;
+      border-radius: 0 3px 3px 0;
+    }
+    .meta-item .label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 0.2rem;
+    }
+    .meta-item .value {
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--text-dark);
+    }
+
+    /* ── SKILLS ─────────────────────────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.25rem;
+    }
+    .skill-card {
+      background: var(--page-bg);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 1.25rem;
+    }
+    .skill-card h3 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--forest);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.02em;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .tag {
+      font-size: 0.75rem;
+      background: rgba(74,111,165,0.1);
+      color: var(--sage);
+      border: 1px solid rgba(74,111,165,0.2);
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+      font-weight: 500;
+    }
+
+    /* ── PROJECTS ───────────────────────────────────────────── */
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 1.75rem;
+      position: relative;
+    }
+    section:nth-child(even) .project-card {
+      background: var(--page-bg);
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--rose);
+      border-radius: 4px 0 0 4px;
+    }
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.6rem;
+    }
+    .project-title {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      color: var(--forest);
+    }
+    .project-year {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-light);
+      background: var(--page-bg);
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+    section:nth-child(even) .project-year {
+      background: var(--surface);
+    }
+    .project-org {
+      font-size: 0.8rem;
+      color: var(--sage);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+    .project-desc {
+      font-size: 0.95rem;
+      color: var(--text-mid);
+      margin-bottom: 1rem;
+    }
+
+    /* ── EXPERIENCE ─────────────────────────────────────────── */
+    .experience-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 10rem 1fr;
+      gap: 0 2rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-dates {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      font-weight: 500;
+      padding-top: 0.15rem;
+    }
+    .exp-role {
+      font-weight: 600;
+      font-size: 0.975rem;
+      color: var(--text-dark);
+      margin-bottom: 0.15rem;
+    }
+    .exp-company {
+      font-size: 0.85rem;
+      color: var(--sage);
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+    }
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .exp-bullets li {
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      padding-left: 1rem;
+      position: relative;
+    }
+    .exp-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--rose);
+      font-size: 0.75rem;
+      top: 0.1rem;
+    }
+
+    /* ── CONTACT ────────────────────────────────────────────── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    .contact-intro {
+      font-size: 0.975rem;
+      color: var(--text-mid);
+      margin-bottom: 1.5rem;
+    }
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      font-weight: 400;
+    }
+    .contact-link .cl-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      width: 5rem;
+      flex-shrink: 0;
+    }
+    .contact-link a { color: var(--sage); font-weight: 500; }
+    .contact-availability {
+      background: rgba(200, 146, 58, 0.08);
+      border: 1px solid rgba(200, 146, 58, 0.25);
+      border-radius: 4px;
+      padding: 1.5rem;
+    }
+    .avail-title {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--forest);
+      margin-bottom: 0.5rem;
+    }
+    .avail-text {
+      font-size: 0.875rem;
+      color: var(--text-mid);
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      background: var(--forest);
+      padding: 1.75rem var(--pad-x);
+      text-align: center;
+    }
+    footer p {
+      font-size: 0.78rem;
+      color: rgba(250,250,248,0.4);
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .about-grid,
+      .contact-grid { grid-template-columns: 1fr; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.25rem; }
+      .exp-dates { padding-top: 0; margin-bottom: 0.25rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HERO ─────────────────────────────────────────────── -->
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Mechanical Engineer</p>
+      <h1 class="hero-name">Lilly George</h1>
+      <p class="hero-tagline">
+        Third-year student at Purdue University studying <b>mechanical engineering</b> with a minor in <b>materials science and engineering</b>. Passionate about the <b>automotive</b> and <b>motorsports</b> industries, with a drive for <b>continuous improvement</b>.
+      </p>
+      <div class="hero-links">
+        <a href="#projects" class="btn btn-primary">View my work</a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+        <!-- REPLACE: Link to your actual resume PDF, or remove this button -->
+        <a href="Lilly George Resume.pdf" class="btn btn-ghost" target="_blank" rel="noopener">Download resume</a>
+        <a href="Lilly George Portfolio.pdf" class="btn btn-ghost" target="_blank" rel="noopener">Download portfolio</a>
+        <a href="Lilly George CV.pdf" class="btn btn-ghost" target="_blank" rel="noopener">Download CV</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── NAV ──────────────────────────────────────────────── -->
+  <nav aria-label="Page sections">
+    <div class="nav-inner">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- ── ABOUT ────────────────────────────────────────────── -->
+  <section id="about">
+    <div class="section-inner">
+      <p class="section-label">Background</p>
+      <h2 class="section-title">About me</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+           I'm a mechanical engineer with experience as a suspension engineer on Purdue's Electric Formula SAE team (PER), as a mechanical test engineer at Honda American Motor Company, and as a mechanical engineer at Cummins on the large engine turbocharger integration team.
+          </p>
+          <p>
+           These experiences have repeatedly brought me through design, validation, and testing processes, strengthening my knowledge of design for manufacturing, validation through physical testing and FEA, and using data to draw conclusions.
+          </p>
+          <p>
+           My love for motorsports comes from helping my father work on his 1966 Ford Mustang. This, along with the start of my mechanical engineering career, has fostered my drive to work in a fast-paced, innovative environment within the motorsports or automotive industries.
+          </p>
+        </div>
+        <div class="about-meta">
+          <div class="meta-item">
+            <div class="label">Location</div>
+            <div class="value">Purdue University <br> West Lafayette, IN <br> open to relocation</div>
+          </div>
+          <div class="meta-item">
+            <div class="label">Education</div>
+            <div class="value">B.S. Mechanical Engineering <br> Minor in Materials Science and Engineering <br> Purdue University</div>
+          </div>
+          <div class="meta-item">
+            <div class="label">Graduation Year</div>
+            <div class="value">2028</div>
+          </div>
+           <div class="meta-item">
+            <div class="label">GPA</div>
+            <div class="value">3.4</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SKILLS ───────────────────────────────────────────── -->
+  <section id="skills">
+    <div class="section-inner">
+      <p class="section-label">Capabilities</p>
+      <h2 class="section-title">Technical skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>Design &amp; CAD</h3>
+          <div class="skill-tags">
+            <span class="tag">Siemens NX</span>
+            <span class="tag">Ansys FEA</span>
+            <span class="tag">CATIA V5</span>
+            <span class="tag">Fusion 360</span>
+            <span class="tag">Autodesk Inventor</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Software &amp; Data</h3>
+          <div class="skill-tags">
+            <span class="tag">MATLAB</span>
+            <span class="tag">Python</span>
+            <span class="tag">Excel</span>
+            <span class="tag">PC Waveform</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Fabrication &amp; Physical Testing</h3>
+          <div class="skill-tags">
+            <span class="tag">Manual Lathe</span>
+            <span class="tag">Manual Mill</span>
+            <span class="tag">Strain Gauges</span>
+            <span class="tag">Accelerometers</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EXPERIENCE ────────────────────────────────────────── -->
+  <section id="experience">
+    <div class="section-inner">
+      <p class="section-label">Work history</p>
+      <h2 class="section-title">Experience</h2>
+      <div class="experience-list">
+
+        <div class="exp-item">
+          <div class="exp-dates">May 2026 — August 2026</div>
+          <div>
+            <div class="exp-role">Mechanical Test Engineering Intern | Powersports Development</div>
+            <div class="exp-company">Honda American Motor Company · Haw River, NC</div>
+            <ul class="exp-bullets">
+              <li>Drove change on commercial lawnmower to prevent part yield due to holding blade plate while torquing bolted connection; mocked up solution, updated Catia, simulated FEA, and worked with design engineers to finalize part change.</li>
+              <li>Collected strain and acceleration data from lawnmower during in-service test. Correlating data to vertical movement of hydraulic actuators under wheels of lawnmower, creating a new, indoor test setup which can accelerate testing and calculate damage accumulation.</li>
+              <li>Designed and fabricated bracket to use voltage generator for measurement of blade stop time. This was more accurate than encoder measurement and allowed lawnmower to pass requirement.</li>
+              <li>Created enclosure for lawnmower blade stop time testing using polycarbonate panelsto allow for employees to safely view blade movement.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-dates">August 2024 — Present</div>
+          <div>
+            <div class="exp-role">Vehicle Dynamics (Suspension) Engineer</div>
+            <div class="exp-company">Purdue Electric Racing (FSAE Electric) · Purdue University; West Lafayette, IN</div>
+            <ul class="exp-bullets">
+              <li>Spearheaded design, validation, and manufacturing of 16 suspension tabs for PER26. This included coping to chassis in Siemens NX, creating CAM, validating tab designs using Ansys FEA, and fabricating an assembly jig for tabs to correctly sit on chassis during welding.</li>
+              <li>Performed uniaxial testing of mock carbon fiber suspension members to analyze feasability of design use next year. Determined maximum failure load and test speed using ANSI standards. Created a test fixture which allowed for inclusion of most of "on-car" assembly during test. Confirmed that the tested design is feasible for use on the 27' car. </li>
+              <li>Designed and manufactured various parts, including steering angle sensor mount, camber plates, and steering rack brackets for 25' car.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-dates">June 2025 — August 2025</div>
+          <div>
+            <div class="exp-role">Mechanical Engineering Intern | Power Systems Turbocharger Integration</div>
+            <div class="exp-company">Cummins, inc. · Seymour, IN</div>
+            <ul class="exp-bullets">
+              <li>Followed and supported a fast-paced 60L genset program; determined necessary engine validation tasks.</li>
+              <li>Researched turbomachinery integration on larger alternative fuel (biodiesel, H2) engines.</li>
+              <li>Broke down turbocharger load limit calculations to improve prior practices and push product performance.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROJECTS ──────────────────────────────────────────── -->
+  <section id="projects">
+    <div class="section-inner">
+      <p class="section-label">Selected work</p>
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-list">
+        <div class="project-card">
+          <div class="project-header">
+            <h3 class="project-title">ONGOING - Custom Steering Rack</h3>
+            <span class="project-year">May 2026 - Present</span>
+          </div>
+          <div class="project-org">Purdue Electric Racing - Vehicle Dynamics Team</div>
+          <p class="project-desc">
+            Working with another teammate to design a custom steering rack which can be a drop-in replacement for a previously purchased rack. This will allow for easy testing and physical validation of the design. Current progress includes setting specs based on those of the purchased rack and researching the internal structure of steering racks. The goal is to make the custom steering rack lighter and include a smaller packaging area than the previously used rack, while maintaining functionality and reliability.
+          </p>
+          <div class="skill-tags">
+            <span class="tag">Siemens NX</span>
+            <span class="tag">Ansys FEA</span>
+            <span class="tag">Mass Reduction</span>
+            <span class="tag">Reverse Engineering</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <h3 class="project-title">ONGOING - In-Place Durability Test Setup for Damage Assessment</h3>
+            <span class="project-year">May 2026 - Present</span>
+          </div>
+          <div class="project-org">Honda American Motor Company</div>
+          <p class="project-desc">
+            Laid strain gauges to collect data from a commercial lawnmower during a durability test. Calculated damage accumulated due to testing through data analysis. Correlating strain and acceleration data on lawmnmower to strains, accelerations, and damage values seen from vertical hydraulic actuation of lawnmower wheels. This will reduce testing time and allow for other lawnmowers to be taken past their limit, displaying failure modes previously unknown.
+          </p>
+          <div class="skill-tags">
+            <span class="tag">Data Analysis/Correlation</span>
+            <span class="tag">Strain Gauges</span>
+            <span class="tag">Accelerometers</span>
+            <span class="tag">Physical Testing</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <h3 class="project-title">Part Change for Improved Strength During Serviceability</h3>
+            <span class="project-year">May 2025</span>
+          </div>
+          <div class="project-org">Honda American Motor Company</div>
+          <p class="project-desc">
+            Mocked-up countermeasure to a design issue which was causing part yield when lawnmower blade plate was held in place to torque bolted connections. Modeled desired change in CAD and presented solution to design team. Validated part change through Catia FEA and through physical fatigue testing of blade plate assembly. The part change was successfully implemented before an upcoming specification fix meeting.
+          </p>
+          <div class="skill-tags">
+            <span class="tag">Problem Solving</span>
+            <span class="tag">Catia V5</span>
+            <span class="tag">Catia FEA</span>
+            <span class="tag">Physical Validation</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <h3 class="project-title">UTM Testing of Suspension Members for PER27</h3>
+            <span class="project-year">April - May 2025</span>
+          </div>
+          <div class="project-org">Purdue Electric Racing - Vehicle Dynamics Team</div>
+          <p class="project-desc">
+            Planned testing of 7 different specifications of mock carbon fiber suspension members. These suspension members consisted of aluminum plugs bonded into carbon fiber twill tubes with epoxy. The goal was to use uniaxial tension loading to debond the epoxy connection between the plugs and tubes. Determined the maximum possible load which the test could require and researched ANSI standards for a loading rate to ensure safety. Designed fixture which acted as a suspension tab which the UTM could grasp. This allowed for the inclusion of rod end bearings, jam nuts, and the bolted connection used on the car within the test, making it more representative of the real car. Testing was successful; the specification of the strongest tube will most likely be used for the design of PER27's suspension members.
+          </p>
+          <div class="skill-tags">
+            <span class="tag">Physical Testing</span>
+            <span class="tag">Design Validation</span>
+            <span class="tag">Test Design</span>
+            <span class="tag">Fixture Design</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <h3 class="project-title">Suspension Tabs for PER26</h3>
+            <span class="project-year">August - January 2025</span>
+          </div>
+          <div class="project-org">Purdue Electric Racing - Vehicle Dynamics Team</div>
+          <p class="project-desc">
+            Developed 16 control arm tabs for 26' car. This included coping the tabs to the chassis in Siemens NX by exporting outer surfaces and filling gaps between them; this ensured that all cuts were normal to the tube surface. Created CAM to manufacture tabs using a rotary tube laser. Validated tab strengths using Ansys FEA. Designed and fabricated assembly jig for tabs to correctly sit on chassis during welding. The tabs were successfully manufactured and welded to the chassis, and are currently being used on the car.
+          </p>
+          <div class="skill-tags">
+            <span class="tag">Structural Design</span>
+            <span class="tag">Siemens NX</span>
+            <span class="tag">Ansys FEA</span>
+            <span class="tag">Assembly Jig Design</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ───────────────────────────────────────────── -->
+  <section id="contact">
+    <div class="section-inner">
+      <p class="section-label">Get in touch</p>
+      <h2 class="section-title">Contact</h2>
+      <div class="contact-grid">
+        <div>
+          <p class="contact-intro">
+            Feel free to reach out to discuss oportunities or ask any questions!
+          </p>
+          <div class="contact-links">
+            <div class="contact-link">
+              <span class="cl-label">School Email</span>
+              <a href="mailto:georg211@purdue.edu">georg211@purdue.edu</a>
+            </div>
+            <div class="contact-link">
+              <span class="cl-label">Personal Email</span>
+              <a href="mailto:georgelilly02@gmail.com">georgelilly02@gmail.com</a>
+            </div>
+            <div class="contact-link">
+              <span class="cl-label">LinkedIn</span>
+              <a href="https://www.linkedin.com/in/lilly-george" target="_blank" rel="noopener">linkedin.com/in/lilly-george</a>
+            </div>
+            <div class="contact-link">
+              <span class="cl-label">Location</span>
+              <span>Pittsburgh, PA / West Lafayette, IN — open to relocation</span>
+            </div>
+          </div>
+        </div>
+        <div class="contact-availability">
+          <div class="avail-title">Reach out:</div>
+          <p class="button-container">
+            <div class="avail-title">School email</div>
+            </p>
+            <a href="mailto:georg211@purdue.edu" class="btn btn-primary">georg211@purdue.edu</a>
+          </p>
+          <p class="button-container">
+            <div class="avail-title">Personal email</div>
+            </p>
+            <a href="mailto:georgelilly02@gmail.com" class="btn btn-primary">georgelilly02@gmail.com</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ────────────────────────────────────────────── -->
+  <footer>
+    <!-- REPLACE: Your name and current year -->
+    <p>© 2026  Lilly George · Built with HTML &amp; CSS · Hosted on Cloudflare Pages</p>
+  </footer>
+
+</body>
+</html>
